@@ -1,16 +1,34 @@
+<script setup lang="ts">
+import {
+  baseHeight,
+  syrupHeight,
+  currentSyrup
+} from "../stores/beverage";
+</script>
+
 <template>
-  <div class="syrup"></div>
+  <div
+    v-if="syrupHeight > 0"
+    class="syrup"
+    :style="{
+      backgroundColor: currentSyrup.color,
+      height: syrupHeight + '%',
+      bottom: baseHeight + '%'
+    }"
+  ></div>
 </template>
 
-<script setup lang="ts"></script>
-<style lang="scss" scoped>
+<style scoped>
 .syrup {
-  transform: translateY(400%);
-  background-color: #c6c6c6;
-  position: relative;
+  position: absolute;
   width: 100%;
-  height: 20%;
-  animation: pour-tea 2s 1s forwards;
-  z-index: 2;
+
+   background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.35) 0px,
+    rgba(255, 255, 255, 0.35) 12px,
+    transparent 12px,
+    transparent 24px
+  );
 }
 </style>
